@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1.0.1" author="Nazar Akolovych">
+        <createTable tableName="tours">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="start_date" type="timestamp"/>
+            <column name="end_date" type="timestamp"/>
+
+            <column name="price" type="real"/>
+            <column name="description" type="text"/>
+            <column name="name" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="tour_image" type="bytea">
+                <constraints nullable="true"/>
+            </column>
+            <column name="rating" type="double"/>
+            <column name="number_of_tours" type="integer">
+                <constraints  nullable="false"/>
+            </column>
+
+            <column name="tour_category_id" type="uuid">
+                <constraints  nullable="false"/>
+            </column>
+
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.1.1" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="tours"
+                                 baseColumnNames="tour_category_id"
+                                 constraintName="fk_tour_category_tours"
+                                 referencedTableName="tour_category"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

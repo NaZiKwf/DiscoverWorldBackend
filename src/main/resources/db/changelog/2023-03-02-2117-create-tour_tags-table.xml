@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1.0.4" author="Nazar Akolovych">
+        <createTable tableName="tour_tags">
+            <column name="tour_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="tag_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.1.1" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="tour_tags"
+                                 baseColumnNames="tour_id"
+                                 constraintName="fk_tour_tags_tours"
+                                 referencedTableName="tours"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+
+    <changeSet id="1.1.2" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="tour_tags"
+                                 baseColumnNames="tag_id"
+                                 constraintName="fk_tour_tags_tags"
+                                 referencedTableName="tags"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"/>
+    </changeSet>
+</databaseChangeLog>

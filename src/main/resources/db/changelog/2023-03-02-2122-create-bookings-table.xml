@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1.0.7" author="Nazar Akolovych">
+        <createTable tableName="bookings">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_phone" type="varchar(50)"/>
+            <column name="user_email" type="varchar(50)"/>
+            <column name="status" type="varchar(50)"/>
+            <column name="price" type="real"/>
+            <column name="date_of_booking" type="timestamp"/>
+
+            <column name="human_sex" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="date_of_birth" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="citizenship" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="passport_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="passport_valid_until" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="tour_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1.1.5" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="bookings"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_bookings_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="1.1.6" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="bookings"
+                                 baseColumnNames="tour_id"
+                                 constraintName="fk_bookings_tours"
+                                 referencedTableName="tours"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

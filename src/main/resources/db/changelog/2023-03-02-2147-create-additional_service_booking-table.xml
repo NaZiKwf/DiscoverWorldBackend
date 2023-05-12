@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1.2.4" author="Nazar Akolovych">
+        <createTable tableName="additional_service_booking">
+            <column name="additional_service_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="booking_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.1.13" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="additional_service_booking"
+                                 baseColumnNames="additional_service_id"
+                                 constraintName="fk_additional_service_booking_additional_services"
+                                 referencedTableName="additional_services"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="1.1.14" author="Nazar Akolovych">
+        <addForeignKeyConstraint baseTableName="additional_service_booking"
+                                 baseColumnNames="booking_id"
+                                 constraintName="fk_additional_service_booking_bookings"
+                                 referencedTableName="bookings"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
