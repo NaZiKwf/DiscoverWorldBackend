@@ -1,0 +1,27 @@
+spring:
+  profiles.active: dev
+  datasource:
+    url: jdbc:postgresql://discover-world:5432/DiscoverWorldDatabase?ssl=false
+    driver-class-name: org.postgresql.Driver
+    username: admin
+    password: admin
+  liquibase:
+    change-log: db/changelog-master.xml
+    default-schema: public
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+jwt:
+  token:
+    prefix: Bearer_
+    secret: DiscoverWorld
+    expired: 3600000
+server:
+  port: 8080
