@@ -1,0 +1,7 @@
+FROM amazoncorretto:17.0.5-alpine
+EXPOSE 8080
+RUN addgroup -S spring-group && adduser -S spring -G spring-group
+USER spring:spring-group
+ARG JAR_FILE=discoverworld-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} discoverworld-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","discoverworld-0.0.1-SNAPSHOT.jar"]

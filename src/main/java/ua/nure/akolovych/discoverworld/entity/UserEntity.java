@@ -42,6 +42,7 @@ public class UserEntity {
 
     @Column(name = "email")
     private String email;
+
     @CreationTimestamp
     @Column(name = "created")
     private Instant created;

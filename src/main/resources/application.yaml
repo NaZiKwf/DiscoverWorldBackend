@@ -1,7 +1,7 @@
 spring:
   profiles.active: dev
   datasource:
-    url: jdbc:postgresql://discover-world:5432/DiscoverWorldDatabase?ssl=false
+    url: jdbc:postgresql://localhost:5432/DiscoverWorldDatabase?ssl=false
     driver-class-name: org.postgresql.Driver
     username: admin
     password: admin

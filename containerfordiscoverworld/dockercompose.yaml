@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  discover-world:
+    networks:
+      - internal
+    build:
+      context: ./docker
+      dockerfile: postgres_server
+    ports:
+      - "5432:5432"
+  pga:
+    build:
+      context: ./docker
+      dockerfile: postgres_pga
+    depends_on:
+      - discover-world
+    networks:
+      - internal
+    ports:
+      - "5433:80"
+  application:
+    build:
+      context: ./docker
+      dockerfile: application
+    depends_on:
+      - discover-world
+    networks:
+      - internal
+    ports:
+      - "8080:8080"
+  frontend:
+    build:
+      context: ./docker
+      dockerfile: client_application
+    depends_on:
+      - discover-world
+    networks:
+      - internal
+    ports:
+      - "4200:4200"  
+networks:
+  internal:
+    driver: bridge
